@@ -347,6 +347,7 @@ DEPENDENCIES
   mongoid-paperclip
   mongoid-rspec
   newrelic_rpm
+  paperclip (= 3.5.2)
   pg
   pry
   pry-nav
