@@ -1,0 +1,19 @@
+.form-horizontal
+  .fieldset
+    .legend
+    = simple_form_for @contact, :html => { :class => 'form-horizontal' }  do |f|
+      .left-column
+        = f.input :first_name
+        = f.input :last_name
+        = f.input :email
+        = f.input :phone
+        = f.input :company
+      .right-column
+        = f.input :address
+        = f.input :city
+        = f.input :state
+        = f.input :zip
+      .clearfix
+      .buttons
+        = f.submit class: 'btn btn-primary'
+        = link_to 'Cancel', contacts_path, class: "btn btn-danger"

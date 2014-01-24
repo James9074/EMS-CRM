@@ -1,0 +1,11 @@
+.container.user-profile
+  .content
+    .profile-form
+      %h2 User Profile
+      %form
+        = simple_form_for @user do |f|
+          = f.input :first_name, label: false, placeholder: 'First name'
+          = f.input :last_name, label: false, placeholder: 'Last name'
+          = f.input :phone, label: false, placeholder: '800 555-1212'
+          = f.submit "Save", class: 'btn'
+

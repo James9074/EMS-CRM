@@ -1,0 +1,22 @@
+.form-horizontal
+  .fieldset
+    .legend
+    = simple_form_for @task, :html => { :class => 'form-horizontal' } do |f|
+      .left-column
+        = f.input :task_name, label: "Name"
+        = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
+        = f.input :assigned_to, collection: (@task_owners)
+        = f.input :task_type, collection: (@task_types), label: "Type"
+        = f.input :number_to_complete, label: "Number to complete"
+        = f.hidden_field :number_completed, :value => 0
+      .right-column
+        -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
+      .clearfix
+      .buttons
+        = f.submit class: 'btn btn-primary'
+        = link_to 'Cancel', tasks_path, class: "btn btn-danger"
+
+:javascript
+  $(document).ready(function() {
+   $(".jquery-ui-date").datepicker();
+  });

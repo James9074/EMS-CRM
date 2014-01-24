@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class LeadMailer - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/mailers/lead_mailer.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActionMailer::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-notify_new_lead">#notify_new_lead</a>
+    
+    <li><a href="#method-i-notify_updated_lead">#notify_updated_lead</a>
+    
+    <li><a href="#method-i-notify_web_form_lead">#notify_web_form_lead</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Account.html">Account</a>
+  
+    <li><a href="./AccountsController.html">AccountsController</a>
+  
+    <li><a href="./AdminUser.html">AdminUser</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./CollectionSelectInput.html">CollectionSelectInput</a>
+  
+    <li><a href="./Contact.html">Contact</a>
+  
+    <li><a href="./ContactForm.html">ContactForm</a>
+  
+    <li><a href="./ContactFormsController.html">ContactFormsController</a>
+  
+    <li><a href="./ContactsController.html">ContactsController</a>
+  
+    <li><a href="./Lead.html">Lead</a>
+  
+    <li><a href="./LeadMailer.html">LeadMailer</a>
+  
+    <li><a href="./LeadsController.html">LeadsController</a>
+  
+    <li><a href="./Note.html">Note</a>
+  
+    <li><a href="./NotesController.html">NotesController</a>
+  
+    <li><a href="./OpportunitiesController.html">OpportunitiesController</a>
+  
+    <li><a href="./Opportunity.html">Opportunity</a>
+  
+    <li><a href="./Organization.html">Organization</a>
+  
+    <li><a href="./OrganizationsController.html">OrganizationsController</a>
+  
+    <li><a href="./PagesController.html">PagesController</a>
+  
+    <li><a href="./StatesHelper.html">StatesHelper</a>
+  
+    <li><a href="./Task.html">Task</a>
+  
+    <li><a href="./TaskMailer.html">TaskMailer</a>
+  
+    <li><a href="./TasksController.html">TasksController</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class LeadMailer</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-notify_new_lead" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">notify_new_lead</span><span
+            class="method-args">(user, lead)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="notify_new_lead-source">
+            <pre><span class="ruby-comment"># File app/mailers/lead_mailer.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_new_lead</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">lead</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@lead</span> = <span class="ruby-identifier">lead</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'A new lead has been assigned to you on RailsCRM'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- notify_new_lead-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- notify_new_lead-method -->
+
+    
+      <div id="method-i-notify_updated_lead" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">notify_updated_lead</span><span
+            class="method-args">(user, lead)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="notify_updated_lead-source">
+            <pre><span class="ruby-comment"># File app/mailers/lead_mailer.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_updated_lead</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">lead</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@lead</span> = <span class="ruby-identifier">lead</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'A lead you have been assigned to on RailsCRM has been updated'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- notify_updated_lead-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- notify_updated_lead-method -->
+
+    
+      <div id="method-i-notify_web_form_lead" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">notify_web_form_lead</span><span
+            class="method-args">(user, lead)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="notify_web_form_lead-source">
+            <pre><span class="ruby-comment"># File app/mailers/lead_mailer.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_web_form_lead</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">lead</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@lead</span> = <span class="ruby-identifier">lead</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'A new web form lead has been assigned to you on RailsCRM'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- notify_web_form_lead-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- notify_web_form_lead-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
