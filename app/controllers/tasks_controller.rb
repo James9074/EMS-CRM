@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   def new
+    
     @task = Task.new
     @task_due_dates = Task.due_dates
     @task_types = Task.task_type
@@ -17,6 +18,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    
     @task = Task.create params[:task]
     task_owner = User.where(name: @task.assigned_to).first
     if @task.save

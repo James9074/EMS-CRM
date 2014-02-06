@@ -1,0 +1,20 @@
+
+Using mongodump at '/home/*****/deploy/lib/mongodb/bin/mongodump' version '2.4.8'...
+Executing command: 
+/home/*****/deploy/lib/mongodb/bin/mongodump --host localhost --port 27809 -d heroku_app21545321 -u **** -p **** --authenticationDatabase admin --out /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z
+connected to: localhost:27809
+Thu Feb  6 12:21:15.871 DATABASE: heroku_app21545321	 to 	/mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321
+Thu Feb  6 12:21:15.890 	heroku_app21545321.system.indexes to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/system.indexes.bson
+Thu Feb  6 12:21:15.891 		 5 objects
+Thu Feb  6 12:21:15.891 	heroku_app21545321.system.users to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/system.users.bson
+Thu Feb  6 12:21:15.892 		 1 objects
+Thu Feb  6 12:21:15.893 	Metadata for heroku_app21545321.system.users to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/system.users.metadata.json
+Thu Feb  6 12:21:15.893 	heroku_app21545321.users to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/users.bson
+Thu Feb  6 12:21:15.909 		 14 objects
+Thu Feb  6 12:21:15.909 	Metadata for heroku_app21545321.users to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/users.metadata.json
+Thu Feb  6 12:21:15.910 	heroku_app21545321.organizations to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/organizations.bson
+Thu Feb  6 12:21:15.911 		 2 objects
+Thu Feb  6 12:21:15.911 	Metadata for heroku_app21545321.organizations to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/organizations.metadata.json
+Thu Feb  6 12:21:15.912 	heroku_app21545321.tasks to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/tasks.bson
+Thu Feb  6 12:21:15.913 		 3 objects
+Thu Feb  6 12:21:15.913 	Metadata for heroku_app21545321.tasks to /mnt/local/misc/backup_temp/52f3eeb0f2b866082fdd6d4b/ds027809_heroku_app21545321_2014-02-06T202113.000Z/heroku_app21545321/tasks.metadata.json
