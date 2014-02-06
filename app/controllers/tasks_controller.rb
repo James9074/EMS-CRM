@@ -2,11 +2,16 @@ class TasksController < ApplicationController
 
   def new
     
-    @task = Task.new
-    @task_due_dates = Task.due_dates
+    #@task = Task.new
+    
+    
+      @task = Task.new
+      @task_due_dates = Task.due_dates
     @task_types = Task.task_type
     @task_owners = User.all.map(&:name)
     @leads = Lead.all.map(&:email)
+    
+    
   end
 
   def show
@@ -18,9 +23,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    
-    @task = Task.create params[:task]
-    task_owner = User.where(name: @task.assigned_to).first
+    params[:task][:assigned_to].reject! {|c| c.empty?}
+    taskOwners = params[:task][:assigned_to]
+    params[:task][:assigned_to].each do |x|
+      @task = Task.create params[:task]
+      @task.assigned_to = x
+      @task.save
+      task_owner = User.where(name: @task.assigned_to).first
+    end
     if @task.save
       redirect_to tasks_path, flash: { notice: 'New Task Created'}
       #TaskMailer.notify_new_task(task_owner, @task).deliver
