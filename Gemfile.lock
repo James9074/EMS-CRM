@@ -81,6 +81,8 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
+    css3-progress-bar-rails (0.5.0)
+      rails (>= 3.1)
     daemons (1.1.9)
     database_cleaner (1.2.0)
     debugger (1.6.5)
@@ -326,6 +328,7 @@ DEPENDENCIES
   bson_ext
   capybara (= 1.1.4)
   coffee-rails
+  css3-progress-bar-rails
   database_cleaner
   debugger
   devise

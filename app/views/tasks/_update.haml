@@ -5,6 +5,7 @@
       .left-column
         .form_user
         -# If admin, display edit options, else display regular info
+        = progress_bar((@task.number_completed.to_f/@task.number_to_complete.to_f)*100, :color => 'blue', :rounded => true)
         - if current_user.is_admin?
           = f.input :task_name, label: "Name"
           = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
@@ -17,9 +18,13 @@
           = f.input :assigned_to, collection: (@task_owners), disabled: true
           = f.input :task_type, collection: (@task_types), label: "Type", disabled: true
           = f.input :number_completed, label: "Number completed"
+          
 
       .right-column
         -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
+        
+        
+
       .clearfix
       .buttons
         = f.submit class: 'btn btn-primary'

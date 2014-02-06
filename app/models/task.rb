@@ -37,4 +37,8 @@ day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week',
           return false
         end
     end
+    
+  def percent_done
+   return (number_completed.to_i/number_to_complete.to.i )*100
+  end
 end

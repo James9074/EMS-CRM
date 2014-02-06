@@ -49,7 +49,7 @@ class TasksController < ApplicationController
     if @task.update_attributes params[:task]
       task_owner = User.where(name: @task.assigned_to).first
       redirect_to tasks_path, flash: { notice: 'Task Updated'}
-      TaskMailer.notify_updated_task(task_owner, @task).deliver
+      #TaskMailer.notify_updated_task(task_owner, @task).deliver
     else
       redirect_to task_path, flash: { notice: 'Unable to update task.'}
     end
