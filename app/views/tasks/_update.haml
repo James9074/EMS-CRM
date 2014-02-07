@@ -5,6 +5,7 @@
       .left-column
         .form_user
         -# If admin, display edit options, else display regular info
+        %div{:class => "taskprogress"} Completed: #{@task.number_completed} | Target: #{@task.number_to_complete}
         = progress_bar((@task.number_completed.to_f/@task.number_to_complete.to_f)*100, :color => 'blue', :rounded => true)
         - if current_user.is_admin?
           = f.input :task_name, label: "Name"
