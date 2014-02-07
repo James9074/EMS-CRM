@@ -9,9 +9,11 @@
           .control-group
             = f.input :email, required: true, autofocus: true
           .control-group
-            = f.input :name, required: true, autofocus: true
+            = f.input :name,label: "First and Last Name", required: true, autofocus: true
           .control-group
             = f.input :password, required: true
+          .control-group
+            = f.input :organization_role, collection: (@organization_roles), label: "Department", required: true
           .control-group
             = f.hidden_field :organization_id, :value => "52c6d7daf13b975c79000002"
             = f.hidden_field :admin, :value => false

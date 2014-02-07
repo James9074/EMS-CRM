@@ -9,6 +9,8 @@ class Task
   field :lead_for_task
   field :number_to_complete
   field :number_completed
+  field :description
+  field :task_notes
   
   validates_presence_of :task_type, :task_name, :assigned_to, :due_date, :number_to_complete
 
@@ -16,7 +18,7 @@ class Task
 
   DUE_DATES = [['Overdue','overdue'],['Asap', 'asap'],['To
 day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week','next_week'],['Sometime later','sometime_later']]
-  TASK_TYPES = [['Calls','calls'], ['Deals','deals'], ['Follow-ups', 'followups'], ['Quotes', 'quotes']]
+  TASK_TYPES = [['Calls','calls'], ['Deals','deals'], ['Follow-ups', 'followups'], ['Quotes', 'quotes'], ['Other', 'other']]
   class << self
     def due_dates
       DUE_DATES

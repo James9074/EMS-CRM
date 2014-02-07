@@ -56,6 +56,8 @@ class User
   field :organization_id, :default => "52c6d7daf13b975c79000002"
   field :organization_role
 
+  ORGANIZATION_ROLES = [['Sales','sales'],['IT','it'],['Warehouse','warehouse'],['Accounting','accounting']]
+  
   def profile_completed?
     first_name != nil && last_name != nil && phone != nil
   end
