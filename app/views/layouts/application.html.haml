@@ -1,4 +1,5 @@
 !!! 5
+
 %html(lang="en")
   %head
     %meta(charset="utf-8")
@@ -26,18 +27,18 @@
             - if user_signed_in? && current_user.organization
               %ul.nav
                 %li= link_to "Dashboard", :dashboard
-                %li= link_to "Leads", :leads
-                %li= link_to "Accounts", :accounts
-                %li= link_to "Contacts", :contacts
+                -#%li= link_to "Leads", :leads
+                -#%li= link_to "Accounts", :accounts
+                -#%li= link_to "Contacts", :contacts
                 %li= link_to "Tasks", :tasks
-                %li= link_to "Opportunities", :opportunities
+                -#%li= link_to "Opportunities", :opportunities
             .navbar-form.navbar-right
               .form-group
                 - if user_signed_in?
                   %ul.nav
                     %li= link_to 'Logout', :logout
                     -#Put a gear icon here, maybe even a door for the logout above.
-                    %li= link_to current_user.name, edit_user_path(current_user)
+                    %li= link_to current_user.name, edit_user_registration_path(current_user)
                 - else
                   %ul.nav
                     -#%li= link_to 'Sign Up', :signup
@@ -49,17 +50,19 @@
         - if user_signed_in? && current_user.organization
           .span2
             .sidebar.sidebar-nav
-              .nav-head Quick Links
-              %ul.nav.nav-list
-                %li= link_to 'New Lead', new_lead_path
-                %li= link_to 'New Task', new_task_path
-                %li= link_to 'New Contact', new_contact_path
-                %li= link_to 'New Account', new_account_path
-                %li= link_to 'New Opportunity', new_opportunity_path
-              %br
+              - if current_user.is_admin?
+                .nav-head Quick Links
+                %ul.nav.nav-list
+                  -#%li= link_to 'New Lead', new_lead_path
+                  %li= link_to 'New Task', new_task_path
+                  -#%li= link_to 'New Contact', new_contact_path
+                  -#%li= link_to 'New Account', new_account_path
+                  -#%li= link_to 'New Opportunity', new_opportunity_path
+                %br
               .nav-head Settings
               %ul.nav.nav-list
-                %li= link_to "Web-to-Lead Form", :web_to_lead
+                -#%li= link_to "Web-to-Lead Form", :web_to_lead
+                %li= link_to "Change Password", edit_user_registration_path(current_user)
 
           .span8
             = bootstrap_flash

@@ -8,10 +8,11 @@
         Please note that this is still being developed and may have issues. If you encounter anything that is broken, or working unexpectedly, email James at #{link_to 'james.thomas@eastmetrosupply.com', 'mailto:james.thomas@eastmetrosupply.com'}  with your issue and we will get it fixed right away.
 
       %br
-      .well.trial
-        %h2 Try it  out
-        %p
-          #{link_to 'Click here to login.', :login}
-
+      - if !user_signed_in?
+        .well.trial
+          %h2 Try it  out
+          %p
+            #{link_to 'Click here to login.', :login}
+  
       
 

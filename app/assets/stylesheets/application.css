@@ -27,3 +27,14 @@ margin-left:113px;}
 .taskprogress{margin-left:40%;font-size:16px;font-weight:bold;margin-bottom:5px;}
 
 .task_list_completed{float:left;}
+.ui-datepicker{width:198px !important;}
+.ui-datepicker-header{background-size:198px !important; width:184px;}
+.ui-datepicker-prev{top:15px !important}
+.ui-datepicker-next{top:15px !important}
+.ui-datepicker-title{font-size:1.0em !important;}
+
+
+a, a:link, a:visited {
+	text-decoration: none !important;
+}
+.actions{color: #005580;}

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  #before_filter :require_login
   before_filter :set_current_user
 
   def after_sign_in_path_for(resource)
@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
 
 
 private
-
+  def require_login
+    unless current_user
+      redirect_to '/login'
+    end
+  end
   def set_current_user
     return true unless session[:user_id]
     @current_user ||= User.find(session[:user_id])

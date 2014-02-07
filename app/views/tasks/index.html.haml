@@ -8,16 +8,16 @@
       %h3 Task List
       %tr
         %th
-          Task Name
+          = link_to "Task Name", :sort => "name"
         %th
-          Due Date
+          = link_to "Due Date", :sort => "due"
         %th
-          Assigned To
+          = link_to "Assigned To", :sort => "assigned"
         %th
-          Task Type
+          = link_to "Task Type", :sort => "type"
         %th
-          Number Completed
-        %th
+          = link_to "Number Completed", :sort => "completed"
+        %th{:class => "actions"}
           Actions
     %tbody
       - @tasks.each do |task|
