@@ -26,6 +26,10 @@ class TasksController < ApplicationController
     params[:task][:assigned_to].reject! {|c| c.empty?}
     taskOwners = params[:task][:assigned_to]
     params[:task][:assigned_to].each do |x|
+      if (params[:task][:number_to_complete].to_i < 1)
+        params[:task][:number_to_complete] = 1
+      
+      end
       @task = Task.create params[:task]
       @task.assigned_to = x
       @task.save
