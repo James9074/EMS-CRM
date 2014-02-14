@@ -38,9 +38,9 @@
                   = task.task_type.to_s.capitalize
                 %td
                   %div{:class => "task_list_completed"}
-                    = task.number_completed
+                    -#= task.number_completed
                     = '/'
-                    = task.number_to_complete
+                    -#= task.number_to_complete
                   = progress_bar((task.number_completed.to_f/task.number_to_complete.to_f)*100, :color => 'blue', :rounded => true)
                 %td
                   = link_to '', task_path(task), class: 'icon-edit', id: 'edit'
