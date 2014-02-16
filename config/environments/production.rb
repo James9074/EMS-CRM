@@ -53,7 +53,7 @@ SassRailscrm::Application.configure do
 
   # Enable threaded mode
   # config.threadsafe!
-  config.action_mailer.default_url_options = { :host => 'railscrm.com' }
+  config.action_mailer.default_url_options = { :host => 'crm.eastmetrosupply.com' }
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
