@@ -34,11 +34,13 @@ class TasksController < ApplicationController
       @task.assigned_to = x
       @task.save
       task_owner = User.where(name: @task.assigned_to).first
+      TaskMailer.notify_new_task(task_owner, @task).deliver
+
     end
     if @task.save
       redirect_to tasks_path, flash: { notice: 'New Task Created'}
-      #TaskMailer.notify_new_task(task_owner, @task).deliver
     else
+      #flash[:notice] = "Somethig is wrong"
       render :new
     end
   end

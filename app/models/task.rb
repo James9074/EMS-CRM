@@ -33,7 +33,7 @@ day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week',
   end
 
   def complete?
-        if number_to_complete.to_i - number_completed.to_i == 0
+        if number_to_complete.to_i - number_completed.to_i <= 0
           return true
         else
           return false
