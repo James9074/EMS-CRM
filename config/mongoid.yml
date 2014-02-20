@@ -17,7 +17,7 @@ development:
 test:
   sessions:
     default:
-      database: ems-crm-test
+      database: local
       hosts:
         - localhost:27017
       options:
