@@ -8,15 +8,20 @@
       %h3 Task List
       %tr
         %th
-          = link_to "Task Name", :sort => "name"
+          = link_to "Task Name", :sort => "task_name", :order => "asc" if params[:order] != 'asc'
+          = link_to "Task Name", :sort => "task_name", :order => "desc" if params[:order] == 'asc'
         %th
-          = link_to "Due Date", :sort => "due"
+          = link_to "Due Date", :sort => "due_date", :order => "asc" if params[:order] != 'asc'
+          = link_to "Due Date", :sort => "due_date", :order => "desc" if params[:order] == 'asc'
         %th
-          = link_to "Assigned To", :sort => "assigned"
+          = link_to "Assigned To", :sort => "assigned_to", :order => "asc" if params[:order] != 'asc'
+          = link_to "Assigned To", :sort => "assigned_to", :order => "desc" if params[:order] == 'asc'
         %th
-          = link_to "Task Type", :sort => "type"
+          = link_to "Task Type", :sort => "task_type", :order => "asc" if params[:order] != 'asc'
+          = link_to "Task Type", :sort => "task_type", :order => "desc" if params[:order] == 'asc'
         %th{:style => "width:27%;"}
-          = link_to "Number Completed", :sort => "completed"
+          = link_to "Number Completed", :sort => "number_completed", :order => "asc" if params[:order] != 'asc'
+          = link_to "Number Completed", :sort => "number_completed", :order => "desc" if params[:order] == 'asc'
         %th{:class => "actions"}
           Actions
     %tbody

@@ -64,11 +64,18 @@ class TasksController < ApplicationController
 #Admin will see all tasks, while regular users will only see the tasks assigned to them.
   def index
     #@tasks = current_user.tasks
+    sort = params[:sort]
+    order = params[:order]
     if current_user.is_admin?
       @tasks = Task.all.to_a
+
     else
       @tasks = Task.all.where(assigned_to: current_user.name).to_a
     end
+
+    @tasks.sort! { |a,b|  a.send(sort).downcase <=> b.send(sort).downcase }  if sort
+    @tasks.reverse! if order  == 'desc'
+
   end
 
 end
