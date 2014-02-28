@@ -17,10 +17,17 @@ class ApplicationController < ActionController::Base
 
 #before_filter :require_login
 before_filter :sign_in_redirect_hack
+before_filter :redirect_if_logged_in
 private
   def require_login
     unless current_user
       redirect_to '/login'
+    end
+  end
+  
+  def redirect_if_logged_in
+    if current_user && (request.env['PATH_INFO'] == '/')
+      redirect_to '/dashboard'
     end
   end
  

@@ -1,0 +1,32 @@
+.span12.well
+  .functions.pull-right
+    - if current_user.is_admin?
+      = link_to 'Create New Template', new_template_path, class: 'btn'
+
+  %table.table.table-striped
+    %thead
+      %h3 Template List
+      %tr
+        %th Create
+        %th Task name
+        %th Task type
+        %th{:style => "width:5%;"} Target
+        %th Description
+        %th Show
+        %th Edit
+        %th Delete
+      %tbody
+      - @templates.each do |template|
+        %tr
+          %td= link_to 'Create', new_task_path(:task_name => template.task_name,
+:description => template.description,:number_to_complete => template.number_to_complete,
+:task_type => template.task_type), class: 'btn'
+          %td= template.task_name
+          %td= template.task_type.capitalize!
+          %td= template.number_to_complete
+          %td= truncate(template.description,length: 30)
+          %td= link_to 'Show', template
+          %td= link_to 'Edit', edit_template_path(template)
+          %td= link_to 'Delete', template, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br

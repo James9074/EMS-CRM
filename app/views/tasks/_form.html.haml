@@ -2,17 +2,20 @@
   .fieldset
     .legend
     = simple_form_for @task, :html => { :class => 'form-horizontal' } do |f|
+      = f.error_notification
       .left-column
-        = f.input :task_name, label: "Name"
+        = f.input :task_name, label: "Name",input_html: {value: params[:task_name]}
         = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
-        = f.input :assigned_to, collection: (@task_owners), as: :check_boxes
-        = f.input :task_type, collection: (@task_types), label: "Type"
-        = f.input :number_to_complete, label: "Number to complete NOTE: Enter a single number above 0 EG: 8"
-        = f.input :description, label: "Description of task", as: :text, input_html: {rows: 7}
+        = f.input :task_type, collection: (@task_types), label: "Type",selected: params[:task_type]
+        = f.input :number_to_complete, label: "Target (a single number above 0)",input_html: {value: params[:number_to_complete]}
+        = f.input :description, label: "Description of task", as: :text, input_html: {rows: 7,value: params[:description]}
         = f.hidden_field :number_completed, :value => 0
         = f.hidden_field :task_notes, :value => ""
+        
       .right-column
         -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
+        - @task_owners = User.all.order_by(organization_role: :asc)
+        = f.input :assigned_to, collection: (@task_owners), as: :check_boxes
       .clearfix
       .buttons
         = f.submit class: 'btn btn-primary'

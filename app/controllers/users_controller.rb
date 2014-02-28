@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < Devise::RegistrationsController
 
   def dashboard
     @leads = Lead.all.where(lead_owner: current_user.email).to_a

@@ -1,4 +1,7 @@
 SassRailscrm::Application.routes.draw do
+  
+  resources :templates
+
 
   get "contact_form/new"
   get "contact_form/create"
@@ -24,7 +27,7 @@ SassRailscrm::Application.routes.draw do
   match 'contact_us' => 'contact_forms#new', as: 'contact_us'
   match 'pricing' => 'pages#pricing', as: 'pricing'
 
-  resources :users
+  #resources :users
   resources :leads do
     resources :notes
   end

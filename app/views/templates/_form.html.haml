@@ -1,0 +1,15 @@
+.form-horizontal
+  .fieldset
+    .legend
+    = simple_form_for(@template) do |f|
+      = f.error_notification
+      .left-column
+        = f.input :task_name
+        = f.input :task_type, as: :select, collection: (@task_types), label: "Type",selected: @template.task_type
+        = f.input :number_to_complete,input_html: {:style => "width: 8%"}
+        = f.input :description, label: "Description of task", as: :text, input_html: {rows: 7}
+        -#= @template.errors.full_messages
+        .clearfix
+        .buttons
+          = f.submit class: 'btn btn-primary'
+          = link_to 'Cancel', templates_path, class: "btn btn-danger"
