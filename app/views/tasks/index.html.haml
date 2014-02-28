@@ -8,20 +8,20 @@
       %h3 Task List
       %tr
         %th
-          = link_to "Task Name", :sort => "task_name", :order => "asc" if params[:order] != 'asc'
-          = link_to "Task Name", :sort => "task_name", :order => "desc" if params[:order] == 'asc'
+          = link_to "Task Name",{ :sort => "task_name", :order => "asc"},{:class => ("upsort" if params[:sort]=="task_name")} if params[:order] != 'asc'
+          = link_to "Task Name",{ :sort => "task_name", :order => "desc"},{:class => ("downsort" if params[:sort]=="task_name")} if params[:order] == 'asc'
         %th
-          = link_to "Due Date", :sort => "due_date", :order => "asc" if params[:order] != 'asc'
-          = link_to "Due Date", :sort => "due_date", :order => "desc" if params[:order] == 'asc'
+          = link_to "Due Date", {:sort => "due_date", :order => "asc"},{:class => ("upsort" if params[:sort]=="due_date")} if params[:order] != 'asc'
+          = link_to "Due Date", {:sort => "due_date", :order => "desc"},{:class => ("downsort" if params[:sort]=="due_date")} if params[:order] == 'asc'
         %th
-          = link_to "Assigned To", :sort => "assigned_to", :order => "asc" if params[:order] != 'asc'
-          = link_to "Assigned To", :sort => "assigned_to", :order => "desc" if params[:order] == 'asc'
+          = link_to "Assigned To", {:sort => "assigned_to", :order => "asc"},{:class => ("upsort" if params[:sort]=="assigned_to")} if params[:order] != 'asc'
+          = link_to "Assigned To", {:sort => "assigned_to", :order => "desc"},{:class => ("downsort" if params[:sort]=="assigned_to")} if params[:order] == 'asc'
         %th
-          = link_to "Type", :sort => "task_type", :order => "asc" if params[:order] != 'asc'
-          = link_to "Type", :sort => "task_type", :order => "desc" if params[:order] == 'asc'
+          = link_to "Type", {:sort => "task_type", :order => "asc"},{:class => ("upsort" if params[:sort]=="task_type")} if params[:order] != 'asc'
+          = link_to "Type", {:sort => "task_type", :order => "desc"},{:class => ("downsort" if params[:sort]=="task_type")} if params[:order] == 'asc'
         %th{:style => "width:27%;"}
-          = link_to "Number Completed", :sort => "number_completed", :order => "asc" if params[:order] != 'asc'
-          = link_to "Number Completed", :sort => "number_completed", :order => "desc" if params[:order] == 'asc'
+          = link_to "Number Completed", {:sort => "number_completed", :order => "asc"},{:class => ("upsort" if params[:sort]=="number_completed")} if params[:order] != 'asc'
+          = link_to "Number Completed", {:sort => "number_completed", :order => "desc"},{:class => ("downsort" if params[:sort]=="number_completed")} if params[:order] == 'asc'
         %th{:class => "actions"}
           Actions
     %tbody

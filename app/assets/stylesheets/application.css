@@ -38,3 +38,6 @@ a, a:link, a:visited {
 	text-decoration: none !important;
 }
 .actions{color: #005580;}
+
+.upsort{background-image:url("./up.png");background-position:left;background-repeat:no-repeat;padding-left:20px;}
+.downsort{background-image:url("./down.png");background-position:left;background-repeat:no-repeat;padding-left:20px;}
