@@ -1,4 +1,4 @@
-test:
+development:
   # Configure available database sessions. (required)
   sessions:
     default:
@@ -14,7 +14,7 @@ test:
        
  # options:
     
-development:
+test:
   sessions:
     default:
       database: local

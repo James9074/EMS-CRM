@@ -24,6 +24,7 @@ gem 'newrelic_rpm'
 gem 'activeadmin-mongoid'
 gem 'mail_form', ">= 1.3.0"
 gem 'css3-progress-bar-rails'
+gem "will_paginate_mongoid"
 
 
 group :production do

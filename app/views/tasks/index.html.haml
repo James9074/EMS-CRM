@@ -2,14 +2,18 @@
   .functions.pull-right
     - if current_user.is_admin?
       = link_to 'Create Task', new_task_path, class: 'btn'
-
+      
+  %h3 Task List
   %table.table.table-striped
     %thead
-      %h3 Task List
+      
+      
       %tr
         %th
-          = link_to "Task Name",{ :sort => "task_name", :order => "asc"},{:class => ("upsort" if params[:sort]=="task_name")} if params[:order] != 'asc'
-          = link_to "Task Name",{ :sort => "task_name", :order => "desc"},{:class => ("downsort" if params[:sort]=="task_name")} if params[:order] == 'asc'
+          - params[:order].to_s.downcase! if params[:order]
+          - params[:sort].to_s.downcase! if params[:sort]
+          = link_to "Task Name",{ :sort => "task_name", :order => "asc"},{:class => ("upsort" if params[:sort]=="task_name")} if params[:order] == 'desc'
+          = link_to "Task Name",{ :sort => "task_name", :order => "desc"},{:class => ("downsort" if (params[:sort]=="task_name" || !params.key?(:sort) ))}if params[:order] != 'desc'
         %th
           = link_to "Due Date", {:sort => "due_date", :order => "asc"},{:class => ("upsort" if params[:sort]=="due_date")} if params[:order] != 'asc'
           = link_to "Due Date", {:sort => "due_date", :order => "desc"},{:class => ("downsort" if params[:sort]=="due_date")} if params[:order] == 'asc'
@@ -46,3 +50,4 @@
             - if current_user.is_admin?
               = link_to '', task_path(task), method: 'delete', class: 'icon-trash', id: 'delete'
               -# = link_to '', task_path(task), method: 'delete', class: 'icon-trash', data: { confirm: 'Are you sure that you want to delete this task?'}, id: 'delete'
+  = will_paginate @tasks
