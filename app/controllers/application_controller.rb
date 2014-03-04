@@ -26,8 +26,11 @@ private
   end
   
   def redirect_if_logged_in
-    if current_user && (request.env['PATH_INFO'] == '/')
+    if current_user && current_user.is_admin? && (request.env['PATH_INFO'] == '/')
       redirect_to '/dashboard'
+    end
+    if current_user && !current_user.is_admin? && (request.env['PATH_INFO'] == '/')
+      redirect_to '/tasks'
     end
   end
  
