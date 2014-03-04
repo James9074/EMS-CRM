@@ -30,8 +30,10 @@ class TasksController < ApplicationController
         params[:task][:number_to_complete] = 1
       
       end
+      
+      
       @task = Task.create params[:task]
-      @task.assigned_to = x
+      @task.assigned_to = User.where(id: x).first.name
       @task.save
       task_owner = User.where(name: @task.assigned_to).first
       TaskMailer.notify_new_task(task_owner, @task).deliver

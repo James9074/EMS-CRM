@@ -66,5 +66,9 @@ class User
   def is_admin?
     try(:admin)
   end
-
+  class << self
+    def roles
+      ORGANIZATION_ROLES
+    end
+  end
 end

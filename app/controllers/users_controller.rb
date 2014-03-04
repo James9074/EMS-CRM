@@ -5,10 +5,16 @@ class UsersController < Devise::RegistrationsController
     #Admin will see all tasks, while regular users will only see the tasks assigned to them.
   if current_user.try(:admin)
       @tasks = Task.all.to_a
-      @users = User.all
+            params.key?(:role) ? @users = User.all.where(organization_role: params[:role]) : @users = User.all
+
+      if (params.key?(:user))
+        @users = User.all.where(name: params[:user]) 
+      end
+      #params.key?(:role) ? @users = User.all.where(role: params[:role]) : @users = User.all
+
     else
       @users = User.all.where(name: current_user.name)
-      @tasks = Task.all.where(assigned_to: current_user.name).to_a
+      @tasks = Task.all.where(assigned_to: current_user.name)
     end
   end
 
