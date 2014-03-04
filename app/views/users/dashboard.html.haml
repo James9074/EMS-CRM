@@ -5,34 +5,35 @@
       Admin
     - else
       = user
-  .nav-collapse.collapse
-  %ul.nav
-    %li.dropdown{:style => "width: 100px;"}
-      %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"} 
-        Filter By User
-        %b.caret
-      %ul.dropdown-menu{"role" => "menu"}
-        %li
-        - prevRole = User.all.order_by(organization_role: :asc).first.organization_role
-        &nbsp; #{prevRole}
-        %br
-        - User.all.order_by(organization_role: :asc).each do |user|
-          - if user.name != "Lane Baucom"
-            - if prevRole != user.organization_role
-              &nbsp; #{user.organization_role}
-              %br
-            %a{:href => "?user="+user.name}  &nbsp; &nbsp; &nbsp; #{user.name}
-            - prevRole = user.organization_role
-            %br
-    %li.dropdown{:style => "width: 100px;"}
-      %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"} 
-        Filter By Role
-        %b.caret
-      %ul.dropdown-menu{"role" => "menu"}
-        %li
-        - User.roles.each do |role,y|
-          %a{:href => "?role="+role} #{role}
+  - if current_user.try(:admin)
+    .nav-collapse.collapse
+    %ul.nav
+      %li.dropdown{:style => "width: 100px;"}
+        %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"} 
+          Filter By User
+          %b.caret
+        %ul.dropdown-menu{"role" => "menu"}
+          %li
+          - prevRole = User.all.order_by(organization_role: :asc).first.organization_role
+          &nbsp; #{prevRole}
           %br
+          - User.all.order_by(organization_role: :asc).each do |user|
+            - if user.name != "Lane Baucom"
+              - if prevRole != user.organization_role
+                &nbsp; #{user.organization_role}
+                %br
+              %a{:href => "?user="+user.name}  &nbsp; &nbsp; &nbsp; #{user.name}
+              - prevRole = user.organization_role
+              %br
+      %li.dropdown{:style => "width: 100px;"}
+        %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"} 
+          Filter By Role
+          %b.caret
+        %ul.dropdown-menu{"role" => "menu"}
+          %li
+          - User.roles.each do |role,y|
+            %a{:href => "?role="+role} #{role}
+            %br
 
   %hr
   - @users.each do |user|
