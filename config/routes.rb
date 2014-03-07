@@ -26,6 +26,7 @@ SassRailscrm::Application.routes.draw do
 
   match 'contact_us' => 'contact_forms#new', as: 'contact_us'
   match 'pricing' => 'pages#pricing', as: 'pricing'
+  match 'calendar' => 'tasks#calendar', as: 'calendar'
 
   #resources :users
   resources :leads do

@@ -271,6 +271,8 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
     sequel (3.20.0)
+    simple_calendar (0.1.9)
+      rails (>= 3.0)
     simple_form (2.1.1)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -365,6 +367,7 @@ DEPENDENCIES
   rails3-generators
   rspec-rails
   sass-rails
+  simple_calendar (~> 0.1.9)
   simple_form
   taps
   thin

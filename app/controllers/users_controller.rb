@@ -1,5 +1,20 @@
 class UsersController < Devise::RegistrationsController
-
+def calendar
+     
+     
+   #Filter tasks based on admin status
+    if current_user.is_admin?
+      @tasks = Task.all.order_by
+    else
+      @tasks = Task.all.where(assigned_to: current_user.name)
+    end
+    
+    
+  end
+    def count(selectdate)
+      Task.where(due_date: selectdate).count
+     end
+     helper_method :count
   def dashboard
     @leads = Lead.all.where(lead_owner: current_user.email).to_a
     #Admin will see all tasks, while regular users will only see the tasks assigned to them.

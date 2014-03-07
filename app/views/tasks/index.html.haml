@@ -18,8 +18,8 @@
           = link_to "Due Date", {:sort => "due_date", :order => "asc"},{:class => ("upsort" if params[:sort]=="due_date")} if params[:order] != 'asc'
           = link_to "Due Date", {:sort => "due_date", :order => "desc"},{:class => ("downsort" if params[:sort]=="due_date")} if params[:order] == 'asc'
         %th
-          = link_to "Assigned To", {:sort => "assigned_to", :order => "asc"},{:class => ("upsort" if params[:sort]=="assigned_to")} if params[:order] != 'asc'
-          = link_to "Assigned To", {:sort => "assigned_to", :order => "desc"},{:class => ("downsort" if params[:sort]=="assigned_to")} if params[:order] == 'asc'
+          = link_to "Employee", {:sort => "assigned_to", :order => "asc"},{:class => ("upsort" if params[:sort]=="assigned_to")} if params[:order] != 'asc'
+          = link_to "Employee", {:sort => "assigned_to", :order => "desc"},{:class => ("downsort" if params[:sort]=="assigned_to")} if params[:order] == 'asc'
         %th
           = link_to "Type", {:sort => "task_type", :order => "asc"},{:class => ("upsort" if params[:sort]=="task_type")} if params[:order] != 'asc'
           = link_to "Type", {:sort => "task_type", :order => "desc"},{:class => ("downsort" if params[:sort]=="task_type")} if params[:order] == 'asc'

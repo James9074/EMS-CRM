@@ -1,0 +1,19 @@
+.span12.well
+  .functions.pull-right
+    - if current_user.is_admin?
+      = link_to 'Create Task', new_task_path, class: 'btn'
+      
+  %h3 Task List
+  %div
+    - lastdate = 0
+    = calendar @tasks do |task|
+      
+      %div
+        - if task.due_date !=  lastdate
+          = link_to count(task.due_date).to_s+" tasks due", tasks_path(:due_date => task.due_date)
+          - lastdate = task.due_date
+
+        - else
+        -#= link_to task.task_name, task
+        
+ 

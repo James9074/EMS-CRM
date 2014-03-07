@@ -41,3 +41,9 @@ a, a:link, a:visited {
 
 .upsort{background-image:url("./up.png");background-position:left;background-repeat:no-repeat;padding-left:20px;}
 .downsort{background-image:url("./down.png");background-position:left;background-repeat:no-repeat;padding-left:20px;}
+.dashlinks {float:left;width:40%}
+.calandarwrap {width: 60% !important;float:right;}
+.calendar td { height: 60px;width: 60px; overflow:hidden }
+.duebox {width:20px;height:20px;background-color:lightblue;}
+.clear{clear:both;}
+

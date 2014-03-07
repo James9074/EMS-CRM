@@ -22,6 +22,23 @@ class TasksController < ApplicationController
     @leads = Lead.all.map(&:email)
   end
 
+  def count(selectdate)
+      Task.where(due_date: selectdate).count
+     end
+     helper_method :count
+   def calendar
+     
+     
+   #Filter tasks based on admin status
+    if current_user.is_admin?
+      @tasks = Task.all.order_by
+    else
+      @tasks = Task.all.where(assigned_to: current_user.name)
+    end
+    
+    
+  end
+  
   def create
     params[:task][:assigned_to].reject! {|c| c.empty?}
     taskOwners = params[:task][:assigned_to]
@@ -65,12 +82,7 @@ class TasksController < ApplicationController
 
 #Admin will see all tasks, while regular users will only see the tasks assigned to them.
   def index
-           
-
-
-#@tasks = Task.reorder("task_name ASC").page(params[:page])
-
-  
+             
     sort = params[:sort]
     order = params[:order]
     page = params[:page]
@@ -80,14 +92,14 @@ class TasksController < ApplicationController
         
     #Filter tasks based on admin status
     if current_user.is_admin?
+      if params.key?(:due_date)
+      @tasks = Task.all.where(due_date: params[:due_date]).order_by(sort => order).page(params[:page])
+      else
       @tasks = Task.all.order_by(sort => order).page(params[:page])
+      end
     else
       @tasks = Task.all.where(assigned_to: current_user.name).order_by(sort => order).page(params[:page])
     end
-      #@tasks = @tasks.paginate(:per_page => 10)
-
-    #@tasks.sort! { |a,b|  a.send(sort).downcase <=> b.send(sort).downcase }  if sort
-    #s@tasks.reverse! if order  == 'desc'
 
   end
 

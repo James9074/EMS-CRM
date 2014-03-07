@@ -15,7 +15,12 @@ class Task
   validates_presence_of :task_type, :task_name, :assigned_to, :due_date, :number_to_complete
 
   belongs_to :user
-
+  
+  def start_time
+    taskdate = Date.strptime(due_date.to_s,"%m/%d/%Y")
+    #DateTime.parse(taskdate) 
+  end
+  
   DUE_DATES = [['Overdue','overdue'],['Asap', 'asap'],['To
 day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week','next_week'],['Sometime later','sometime_later']]
   TASK_TYPES = [['Calls','calls'],['Quotes','quotes'], ['Sales', 'sales'], ['Other', 'other']]
