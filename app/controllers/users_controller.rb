@@ -11,7 +11,7 @@ def calendar
     
     
   end
-    def count(selectdate)
+  def count(selectdate)
       Task.where(due_date: selectdate).count
      end
      helper_method :count
@@ -22,15 +22,19 @@ def calendar
       @tasks = Task.all.to_a
             params.key?(:role) ? @users = User.all.where(organization_role: params[:role]) : @users = User.all
 
-      if (params.key?(:user))
-        @users = User.all.where(name: params[:user]) 
-      end
-      #params.key?(:role) ? @users = User.all.where(role: params[:role]) : @users = User.all
+      if (params.key?(:username)) && params[:username][:name] != ""
+        #@users = User.all.where(name: params[:user])
+        @tasks = Task.all.where(assigned_to: params[:username][:name])
+        @filtername = params[:username][:name]
 
-    else
-      @users = User.all.where(name: current_user.name)
-      @tasks = Task.all.where(assigned_to: current_user.name)
-    end
+      #params.key?(:role) ? @users = User.all.where(role: params[:role]) : @users = User.all
+      end
+
+  elsif !current_user.try(:admin)
+    @users = User.all.where(name: current_user.name)
+    @tasks = Task.all.where(assigned_to: current_user.name)
+
+end
   end
 
   def edit
@@ -46,4 +50,6 @@ def calendar
       redirect_to :back, error: "User was unable to be updated"
     end
   end
+
+
 end

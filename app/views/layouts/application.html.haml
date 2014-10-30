@@ -29,11 +29,11 @@
                 - if current_user.is_admin?
                   %li= link_to "Dashboard", :dashboard
                 - if current_user.is_admin?
-                  %li= link_to 'Monthly Tasks', :templates
+                  %li= link_to 'Saved Tasks', :templates
                 -#%li= link_to "Leads", :leads
                 -#%li= link_to "Accounts", :accounts
                 -#%li= link_to "Contacts", :contacts
-                %li= link_to "Current Assigned Tasks", :tasks
+                %li= link_to "Active Tasks", :tasks
                 -#%li= link_to "Opportunities", :opportunities
             .navbar-form.navbar-right
               .form-group
@@ -57,7 +57,7 @@
                 .nav-head Create New...
                 %ul.nav.nav-list
                   -#%li= link_to 'New Lead', new_lead_path
-                  %li= link_to 'Monthly Task', templates_path
+                  %li= link_to 'Saved Task', templates_path
                   %li= link_to 'Custom Task', new_task_path
                   -#%li= link_to 'New Contact', new_contact_path
                   -#%li= link_to 'New Account', new_account_path

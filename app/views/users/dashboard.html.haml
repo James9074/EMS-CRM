@@ -3,14 +3,30 @@
     Welcome to your Dashboard, 
     - if current_user.try(:admin)
       Admin
+      %div{:style=>"float:right"}
+        = form_tag do
+          = collection_select("username", "name", @users, "name", :name, options ={:prompt => "Show All Users", :selected => @filtername.to_s} )
+          = submit_tag "Apply", style: "font-size:14px;"
+
+
     - else
       = user
   %div
-   
 
     %hr{:class=>'clear'}
+
+    - if @tasks.count == 0
+      %h2
+        No Tasks Currently Assigned For
+        = @filtername
+
     - @users.each do |user|
-      - if !user.is_admin?
+      - x = false
+      - @tasks.each do |task|
+        - if task.assigned_to == user.name
+          - x = true
+          - break
+      - if x
         %table.table.table-striped
           %thead
             %h3 Task List - #{user.name}

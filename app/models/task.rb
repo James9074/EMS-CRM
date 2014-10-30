@@ -6,13 +6,14 @@ class Task
   field :due_date
   field :assigned_to
   field :task_type
+  field :repeating_type
   field :lead_for_task
   field :number_to_complete
   field :number_completed
   field :description
   field :task_notes
   
-  validates_presence_of :task_type, :task_name, :assigned_to, :due_date, :number_to_complete
+  validates_presence_of :task_type, :task_name, :assigned_to, :due_date, :number_to_complete, :repeating_type
 
   belongs_to :user
   
@@ -24,6 +25,7 @@ class Task
   DUE_DATES = [['Overdue','overdue'],['Asap', 'asap'],['To
 day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week','next_week'],['Sometime later','sometime_later']]
   TASK_TYPES = [['Calls','calls'],['Quotes','quotes'], ['Sales', 'sales'], ['Other', 'other']]
+  REPEATING_TYPES = [['None', 'none'],['Daily','daily'],['Weekly','weekly'],['Monthly','monthly']]
   class << self
     def due_dates
       DUE_DATES
@@ -33,6 +35,9 @@ day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week',
       TASK_TYPES
     end
 
+    def repeating_type
+      REPEATING_TYPES
+    end
 
 
   end

@@ -1,13 +1,17 @@
 .span12.well
   .functions.pull-right
     - if current_user.is_admin?
+      %div{:style=>"float:right"}
+        -#= form_tag do
+          -#= collection_select("username", "name", @users, "name", :name, options ={:prompt => "Show All Users", :selected => @filtername.to_s} )
+          -#= submit_tag "Apply", style: "font-size:14px;"
       = link_to 'Create Task', new_task_path, class: 'btn'
-      
-  %h3 Task List
+
+
+
+  %h3 Active Tasks List
   %table.table.table-striped
     %thead
-      
-      
       %tr
         %th
           - params[:order].to_s.downcase! if params[:order]
@@ -23,6 +27,9 @@
         %th
           = link_to "Type", {:sort => "task_type", :order => "asc"},{:class => ("upsort" if params[:sort]=="task_type")} if params[:order] != 'asc'
           = link_to "Type", {:sort => "task_type", :order => "desc"},{:class => ("downsort" if params[:sort]=="task_type")} if params[:order] == 'asc'
+        %th
+          = link_to "Repeating", {:sort => "repeating_type", :order => "asc"},{:class => ("upsort" if params[:sort]=="repeating_type")} if params[:order] != 'asc'
+          = link_to "Repeating", {:sort => "repeating_type", :order => "desc"},{:class => ("downsort" if params[:sort]=="repeating_type")} if params[:order] == 'asc'
         %th{:style => "width:27%;"}
           = link_to "Number Completed", {:sort => "number_completed", :order => "asc"},{:class => ("upsort" if params[:sort]=="number_completed")} if params[:order] != 'asc'
           = link_to "Number Completed", {:sort => "number_completed", :order => "desc"},{:class => ("downsort" if params[:sort]=="number_completed")} if params[:order] == 'asc'
@@ -39,6 +46,8 @@
             = task.assigned_to
           %td
             = task.task_type.to_s.capitalize
+          %td
+            = task.repeating_type.to_s.capitalize
           %td
             %div{:class => "task_list_completed"}
               = task.number_completed

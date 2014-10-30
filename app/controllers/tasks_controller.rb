@@ -5,9 +5,10 @@ class TasksController < ApplicationController
     #@task = Task.new
     
     
-      @task = Task.new
-      @task_due_dates = Task.due_dates
+    @task = Task.new
+    @task_due_dates = Task.due_dates
     @task_types = Task.task_type
+    @repeating_types = Task.repeating_type
     @task_owners = User.all.map(&:name)
     @leads = Lead.all.map(&:email)
     
@@ -18,8 +19,11 @@ class TasksController < ApplicationController
     @task = Task.find params[:id]
     @task_due_dates = Task.due_dates
     @task_types = Task.task_type
+    @repeating_types = Task.repeating_type
     @task_owners = User.all.map(&:name)
     @leads = Lead.all.map(&:email)
+
+
   end
 
   def count(selectdate)
@@ -45,10 +49,10 @@ class TasksController < ApplicationController
     params[:task][:assigned_to].each do |x|
       if (params[:task][:number_to_complete].to_i < 1)
         params[:task][:number_to_complete] = 1
-      
+
       end
-      
-      
+
+
       @task = Task.create params[:task]
       @task.assigned_to = User.where(id: x).first.name
       @task.save
@@ -82,25 +86,34 @@ class TasksController < ApplicationController
 
 #Admin will see all tasks, while regular users will only see the tasks assigned to them.
   def index
-             
+    @users = User.all
     sort = params[:sort]
     order = params[:order]
     page = params[:page]
     order ||= :asc    
     sort ||= :task_name
     page ||= 1
-        
+
     #Filter tasks based on admin status
     if current_user.is_admin?
-      if params.key?(:due_date)
-      @tasks = Task.all.where(due_date: params[:due_date]).order_by(sort => order).page(params[:page])
+      if params.key?(:due_date) && (params.key?(:username)) && params[:username][:name] != ""
+        @tasks = Task.all.where(due_date: params[:due_date],assigned_to: params[:username][:name]).order_by(sort => order).page(params[:page])
+      elsif (params.key?(:username)) && params[:username][:name] != ""
+        @tasks = Task.all.where(assigned_to: params[:username][:name]).order_by(sort => order).page(params[:page])
+      elsif params.key?(:due_date)
+        @tasks = Task.all.where(due_date: params[:due_date]).order_by(sort => order).page(params[:page])
       else
-      @tasks = Task.all.order_by(sort => order).page(params[:page])
+        @tasks = Task.all.order_by(sort => order).page(params[:page])
+      end
+
+      if (params.key?(:username)) && params[:username][:name] != ""
+        @filtername = params[:username][:name]
+      else
+        @filtername = ""
       end
     else
       @tasks = Task.all.where(assigned_to: current_user.name).order_by(sort => order).page(params[:page])
     end
-
   end
 
 end

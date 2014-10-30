@@ -2,7 +2,9 @@ development:
   # Configure available database sessions. (required)
   sessions:
     default:
-      uri: mongodb://heroku_app21545321:v3177svouq4qkc2mu65209bqp6@ds027809.mongolab.com:27809/heroku_app21545321
+      uri: mongodb://emsadmin:sigmond123@ds027809.mongolab.com:27809/heroku_app21545321
+
+      #uri: mongodb://heroku_app21545321:v3177svouq4qkc2mu65209bqp6@ds027809.mongolab.com:27809/heroku_app21545321
 
       options:
         consistency: :strong
@@ -17,7 +19,7 @@ development:
 test:
   sessions:
     default:
-      database: local
+      database: ems
       hosts:
         - localhost:27017
       options:
@@ -31,6 +33,7 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
+      uri: mongodb://emsadmin:Sigmond123!@ds027809.mongolab.com:27809/heroku_app21545321
+      #uri: <%= ENV['MONGOLAB_URI'] %>
       options:
         consistency: :strong

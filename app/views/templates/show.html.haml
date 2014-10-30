@@ -1,21 +1,8 @@
-%p#notice= notice
 
-%p
-  %b Task name:
-  = @template.task_name
-%p
-  %b Task type:
-  = @template.task_type
-%p
-  %b Number to complete:
-  = @template.number_to_complete
-%p
-  %b Description:
-  = @template.description
-%p
-  %b Id:
-  = @template.id
+.form
+  %h2
+    Edit Task Template
+  %br
+    = render partial: 'form'
 
-= link_to 'Edit', edit_template_path(@template)
-\|
-= link_to 'Back', templates_path
+-#= link_to 'Show', @template
