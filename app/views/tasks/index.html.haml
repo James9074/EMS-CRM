@@ -43,7 +43,13 @@
           %td
             = task.due_date.to_s.capitalize
           %td
-            = task.assigned_to
+            - if task.assigned_to.kind_of?(Array)
+              - if task.assigned_to.length == 1
+                = task.assigned_to[0]
+              - else
+                = task.assigned_to.length.to_s + " Users..."
+            - else
+              = task.assigned_to
           %td
             = task.task_type.to_s.capitalize
           %td

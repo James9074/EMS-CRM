@@ -16,6 +16,7 @@
         -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
         - @task_owners = User.all.order_by(organization_role: :asc)
         = f.input :assigned_to, collection: (@task_owners), as: :check_boxes
+        = f.input :collab, label: "Shared?", inline_label: "If checked, each user checked above will share the same task.", as: :boolean, input_html: {checked: false}
       .clearfix
       .buttons
         = f.submit class: 'btn btn-primary'

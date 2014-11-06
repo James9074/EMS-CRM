@@ -46,7 +46,22 @@ class TasksController < ApplicationController
   def create
     params[:task][:assigned_to].reject! {|c| c.empty?}
     taskOwners = params[:task][:assigned_to]
-    params[:task][:assigned_to].each do |x|
+    if params[:task][:collab] == "1"
+      if (params[:task][:number_to_complete].to_i < 1)
+        params[:task][:number_to_complete] = 1
+      end
+      @task = Task.create params[:task]
+      @task.assigned_to.clear
+      params[:task][:assigned_to].each do |x|
+        @task.assigned_to.push(User.where(id: x).first.name)
+      end
+      puts @task.assigned_to
+      @task.save
+      task_owner = User.where(name: @task.assigned_to).first
+      #TaskMailer.notify_new_task(task_owner, @task).deliver
+
+    else
+      params[:task][:assigned_to].each do |x|
       if (params[:task][:number_to_complete].to_i < 1)
         params[:task][:number_to_complete] = 1
 
@@ -57,8 +72,9 @@ class TasksController < ApplicationController
       @task.assigned_to = User.where(id: x).first.name
       @task.save
       task_owner = User.where(name: @task.assigned_to).first
-      TaskMailer.notify_new_task(task_owner, @task).deliver
+      #TaskMailer.notify_new_task(task_owner, @task).deliver
 
+    end
     end
     if @task.save
       redirect_to tasks_path, flash: { notice: 'New Task Created'}
@@ -74,11 +90,15 @@ class TasksController < ApplicationController
   end
 
   def update
+    params[:task][:assigned_to].reject! {|c| c.empty?}
+
     @task = Task.find params[:id]
     if @task.update_attributes params[:task]
-      task_owner = User.where(name: @task.assigned_to).first
+      #task_owner = User.where(name: @task.assigned_to).first
+      #@task.assigned_to.clear
+
       redirect_to tasks_path, flash: { notice: 'Task Updated'}
-      TaskMailer.notify_updated_task(task_owner, @task).deliver
+      #TaskMailer.notify_updated_task(task_owner, @task).deliver
     else
       redirect_to task_path, flash: { notice: 'Unable to update task.'}
     end

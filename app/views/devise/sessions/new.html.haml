@@ -11,6 +11,8 @@
             = f.input :password, required: false, label: false, placeholder: 'password'
           .control-group
             = f.input :remember_me, as: :boolean, inline_label: 'Remember me', label: false if devise_mapping.rememberable?
+            -#=link_to "Change your password", edit_user_registration_path
+
           %button.btn.primary{type: "submit"} Sign in
 
       = render "devise/shared/links"

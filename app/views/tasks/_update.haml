@@ -11,7 +11,8 @@
         - if current_user.is_admin?
           = f.input :task_name, label: "Name"
           = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
-          = f.input :assigned_to, collection: (@task_owners)
+          = f.input :assigned_to, collection: (@task_owners), as: :check_boxes
+          = f.input :collab, label: "Shared?", as: :boolean, disabled: true
           = f.input :task_type, collection: (@task_types), label: "Type"
           = f.input :repeating_type, collection: (@repeating_types), label: "Repeat"
           = f.input :number_completed, label: "Number completed"
@@ -21,12 +22,15 @@
         - else
           = f.input :task_name, label: "Name", disabled: true
           = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}, disabled: true
-          = f.input :assigned_to, collection: (@task_owners), disabled: true
+          = f.input :assigned_to, collection: (@task_owners), disabled: true, as: :check_boxes
+          = f.input :collab, label: "Shared?", as: :boolean, disabled: true
           = f.input :task_type, collection: (@task_types), label: "Type", disabled: true
           = f.input :repeating_type, collection: (@repeating_types), label: "Repeat", disabled: true
           = f.input :number_completed, label: "Number completed"
           = f.input :description, label: "Description of task", as: :text, input_html: {rows: 7}
-          = f.input :task_notes, label: "Task Notes", as: :text, input_html: {rows: 7}          
+          = f.input :task_notes, label: "Task Notes", as: :text, input_html: {rows: 7}
+          = f.input :collab, label: "Shared?", as: :boolean, disabled: true
+
 
       .right-column
         -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'

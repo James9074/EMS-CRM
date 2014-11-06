@@ -23,7 +23,7 @@
     - @users.each do |user|
       - x = false
       - @tasks.each do |task|
-        - if task.assigned_to == user.name
+        - if task.assigned_to.include?(user.name)
           - x = true
           - break
       - if x
@@ -45,14 +45,20 @@
                 Actions
           %tbody
             - @tasks.each do |task|
-              - if task.assigned_to == user.name
+              - if task.assigned_to.include?(user.name)
                 %tr{:class => (task.complete? ? "complete" : "incomplete")}
                   %td
                     = link_to task.task_name, task_path(task), id: 'edit'
                   %td
                     = task.due_date.to_s.capitalize
                   %td
-                    = task.assigned_to
+                    - if task.assigned_to.kind_of?(Array)
+                      - if task.assigned_to.length == 1
+                        = task.assigned_to[0]
+                      - else
+                        = task.assigned_to.length.to_s + " Users..."
+                    - else
+                      = task.assigned_to
                   %td
                     = task.task_type.to_s.capitalize
                   %td
