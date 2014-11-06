@@ -13,10 +13,11 @@
           .control-group
             = f.input :password, required: true
           .control-group
-            = f.input :organization_role, collection: (@organization_roles), label: "Department", required: true
-          .control-group
             = f.hidden_field :organization_id, :value => "52c6d7daf13b975c79000002"
             = f.hidden_field :admin, :value => false
           .control-group
             = f.input :password_confirmation, required: true
+          .control-group
+            - @organization_roles = ['IT','Warehouse','Accounting','Inside Sales','Outside Sales']
+            = f.input :organization_role, collection: (@organization_roles), label: "Department", required: true
           %button.btn.primary{type: "submit"} Sign up

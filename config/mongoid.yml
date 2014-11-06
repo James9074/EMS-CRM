@@ -33,7 +33,7 @@ test:
 production:
   sessions:
     default:
-      uri: mongodb://emsadmin:Sigmond123!@ds027809.mongolab.com:27809/heroku_app21545321
+      uri: mongodb://emsadmin:sigmond123@ds027809.mongolab.com:27809/heroku_app21545321
       #uri: <%= ENV['MONGOLAB_URI'] %>
       options:
         consistency: :strong
