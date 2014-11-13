@@ -54,11 +54,11 @@ class TasksController < ApplicationController
       @task.assigned_to.clear
       params[:task][:assigned_to].each do |x|
         @task.assigned_to.push(User.where(id: x).first.name)
+        task_owner = ser.where(id: x).first
+        TaskMailer.notify_new_task(task_owner, @task).deliver
       end
-      puts @task.assigned_to
       @task.save
-      task_owner = User.where(name: @task.assigned_to).first
-      TaskMailer.notify_new_task(task_owner, @task).deliver
+
 
     else
       params[:task][:assigned_to].each do |x|
