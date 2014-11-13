@@ -54,11 +54,13 @@ class TasksController < ApplicationController
       @task.assigned_to.clear
       params[:task][:assigned_to].each do |x|
         @task.assigned_to.push(User.where(id: x).first.name)
-        task_owner = User.where(id: x).first
+      end
+      puts @task.assigned_to
+      @task.save
+      @task.assigned_to.each do |y|
+        task_owner = User.where(name: y).first
         TaskMailer.notify_new_task(task_owner, @task).deliver
       end
-      @task.save
-
 
     else
       params[:task][:assigned_to].each do |x|
@@ -68,8 +70,9 @@ class TasksController < ApplicationController
       @task = Task.create params[:task]
       @task.assigned_to = User.where(id: x).first.name
       @task.save
-      task_owner = User.where(name: @task.assigned_to).first
-      TaskMailer.notify_new_task(task_owner, @task).deliver
+        task_owner = User.where(name: @task.assigned_to).first
+        TaskMailer.notify_new_task(task_owner, @task).deliver
+
 
     end
     end
