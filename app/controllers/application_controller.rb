@@ -37,7 +37,7 @@ private
 
   def sign_in_redirect_hack
     if controller_name != 'sessions' and current_user.blank?
-      #redirect_to '/login'
+      redirect_to '/login'
     end
   end
 
