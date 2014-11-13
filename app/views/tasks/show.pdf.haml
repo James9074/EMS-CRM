@@ -27,9 +27,12 @@
                 <br/>
               %div{:class => "text optional control-label", :style=>"font-weight:bold"} Assigned To:
               %div{:class => "controls", :style=> "margin-top:5px;"}
-                - @task.assigned_to.each do |y|
-                  %span -
-                  = y
+                - if @task.assigned_to.is_a?(Array)
+                  - @task.assigned_to.each do |y|
+                    %span -
+                    = y
+                - else
+                  = @task.assigned_to
                 %div{:style => "clear:both"}
                 <br/>
               %div{:class => "text optional control-label", :style=>"font-weight:bold"} Shared?
