@@ -25,7 +25,7 @@ class Task
   
   DUE_DATES = [['Overdue','overdue'],['Asap', 'asap'],['To
 day', 'today'],['Tomorrow', 'tomorrow'],['This week', 'this_week'],['Next week','next_week'],['Sometime later','sometime_later']]
-  TASK_TYPES = [['Calls','calls'],['Quotes','quotes'], ['Sales', 'sales'], ['Other', 'other']]
+  TASK_TYPES = ['Calls','Quotes','Sales','Other']
   REPEATING_TYPES = [['None', 'none'],['Daily','daily'],['Weekly','weekly'],['Monthly','monthly']]
   class << self
     def due_dates

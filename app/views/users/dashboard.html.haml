@@ -17,8 +17,12 @@
 
     - if @tasks.count == 0
       %h2
-        No Tasks Currently Assigned For
-        = @filtername
+        - if @filtername
+          No Tasks Currently Assigned For
+          = @filtername
+        - else
+          No Tasks Currently Assigned
+
 
     - @users.each do |user|
       - x = false

@@ -64,24 +64,44 @@ class TasksController < ApplicationController
       params[:task][:assigned_to].each do |x|
       if (params[:task][:number_to_complete].to_i < 1)
         params[:task][:number_to_complete] = 1
-
       end
-
-
       @task = Task.create params[:task]
       @task.assigned_to = User.where(id: x).first.name
       @task.save
       task_owner = User.where(name: @task.assigned_to).first
-      #TaskMailer.notify_new_task(task_owner, @task).deliver
+      TaskMailer.notify_new_task(task_owner, @task).deliver
 
     end
     end
-    if @task.save
-      redirect_to tasks_path, flash: { notice: 'New Task Created'}
-    else
-      #flash[:notice] = "Somethig is wrong"
+    if !defined? @task
+      flash[:notice] = "Please select a user or users first"
+      #redirect_to new_task_path, error: "Not right..."
+      @task = Task.create params[:task]
+
+      @task_due_dates = Task.due_dates
+      @task_types = Task.task_type
+      @repeating_types = Task.repeating_type
+      @task_owners = User.all.map(&:name)
+      @leads = Lead.all.map(&:email)
       render :new
+
+    else
+      if @task.save
+      redirect_to dashboard_path, flash: { notice: 'New Task Created'}
+      else
+      flash[:notice] = "Something is wrong"
+
+      @task_due_dates = Task.due_dates
+      @task_types = Task.task_type
+      @repeating_types = Task.repeating_type
+      @task_owners = User.all.map(&:name)
+      @leads = Lead.all.map(&:email)
+
+
+      render :new
+      end
     end
+
   end
 
   def destroy
@@ -90,17 +110,28 @@ class TasksController < ApplicationController
   end
 
   def update
-    params[:task][:assigned_to].reject! {|c| c.empty?}
-
+    puts "Assigned to:"
+    puts params[:task][:assigned_to]
+    if params[:task][:assigned_to].is_a?(Array)
+      params[:task][:assigned_to].reject! {|c| c.empty?}
+    end
+    puts "Params"
+    puts params
     @task = Task.find params[:id]
-    if @task.update_attributes params[:task]
-      #task_owner = User.where(name: @task.assigned_to).first
-      #@task.assigned_to.clear
+    puts "Assigned to:"
+    if params[:task][:assigned_to].length == 0
+      params[:task][:assigned_to] = @task.assigned_to
+    end
+    if @task.update_attributes(params[:task])
+      redirect_to dashboard_path, flash: { notice: 'Task Updated'}
+      params[:task][:assigned_to].each do |x|
 
-      redirect_to tasks_path, flash: { notice: 'Task Updated'}
-      #TaskMailer.notify_updated_task(task_owner, @task).deliver
+        task_owner = User.where(id: x).first.name
+        #TaskMailer.notify_updated_task(task_owner, @task).deliver
+
+      end
     else
-      redirect_to task_path, flash: { notice: 'Unable to update task.'}
+      redirect_to dashboard_path, flash: { notice: 'Unable to update task.'}
     end
   end
 
