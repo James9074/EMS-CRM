@@ -1,0 +1,57 @@
+.form
+  %h2
+    East Metro Supply CRM - Task Report: #{@task.task_name}
+  %div{:style => "font-size:12px;"}
+    .form-horizontal
+      .fieldset
+        .legend
+        = simple_form_for @task, :html => { :class => 'form-horizontal' } do |f|
+          .left-column
+            .form_user
+              %div{:class => "taskprogress", :style=>"font-weight:bold"} Completed: #{@task.number_completed} | Target: #{@task.number_to_complete}
+              %br
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Name of Task:
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                = @task.task_name
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Description of Task:
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                = @task.description
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Due Date:
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                = @task.due_date
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Assigned To:
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                - @task.assigned_to.each do |y|
+                  %span -
+                  = y
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Shared?
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                - if @task.collab == 1
+                  Yes
+                - else
+                  No
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Task Type:
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                = @task.task_type
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Repeating?
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                = @task.repeating_type.to_s.capitalize
+                %div{:style => "clear:both"}
+                <br/>
+              %div{:class => "text optional control-label", :style=>"font-weight:bold"} Task Notes:
+              %div{:class => "controls", :style=> "margin-top:5px;"}
+                = @task.task_notes
+                %div{:style => "clear:both"}
+                <br/>

@@ -23,8 +23,18 @@ class TasksController < ApplicationController
     @task_owners = User.all.map(&:name)
     @leads = Lead.all.map(&:email)
 
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: @task.task_name,                  # file name
+               layout: 'layouts/application.pdf.haml',  # layout used
+               show_as_html: params[:debug].present?    # allow debuging
+      end
+    end
+
 
   end
+
 
   def count(selectdate)
       Task.where(due_date: selectdate).count
