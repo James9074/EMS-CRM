@@ -128,12 +128,6 @@ class TasksController < ApplicationController
     end
     if @task.update_attributes(params[:task])
       redirect_to dashboard_path, flash: { notice: 'Task Updated'}
-      params[:task][:assigned_to].each do |x|
-
-        #task_owner = User.where(id: x).first.name
-        #TaskMailer.notify_updated_task(task_owner, @task).deliver
-
-      end
     else
       redirect_to dashboard_path, flash: { notice: 'Unable to update task.'}
     end
