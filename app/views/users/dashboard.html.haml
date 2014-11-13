@@ -64,7 +64,7 @@
                     - else
                       = task.assigned_to
                   %td
-                    = task.task_type.to_s.capitalize
+                    = task.task_type.to_s
                   %td
                     %div{:class => "task_list_completed"}
                       = task.number_completed
@@ -73,5 +73,6 @@
                     = progress_bar((task.number_completed.to_f/task.number_to_complete.to_f)*100, :color => 'blue', :rounded => true)
                   %td
                     = link_to '', task_path(task), class: 'icon-edit', id: 'edit'
+                    = link_to '', task_path(task) << ".pdf", class: 'icon-file', id: 'edit'
                     - if current_user.is_admin?
                       = link_to '', task_path(task), method: 'delete', class: 'icon-trash', data: { confirm: 'Are you sure that you want to delete this task?'}, id: 'delete'
