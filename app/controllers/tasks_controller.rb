@@ -120,7 +120,7 @@ class TasksController < ApplicationController
 
   def destroy
     Task.find(params[:id]).destroy
-    redirect_to tasks_path, flash: { notice: 'Task Deleted'}
+    redirect_to dashboard_path, flash: { notice: 'Task Deleted'}
   end
 
   def update
