@@ -69,7 +69,7 @@ class TasksController < ApplicationController
       if @task.save
         @task.assigned_to.each do |y|
           task_owner = User.where(name: y).first
-          TaskMailer.notify_new_task(task_owner, @task).deliver
+          #TaskMailer.notify_new_task(task_owner, @task).deliver
         end
       end
 
@@ -82,7 +82,7 @@ class TasksController < ApplicationController
       @task.assigned_to = User.where(id: x).first.name
       if @task.save
         task_owner = User.where(name: @task.assigned_to).first
-        TaskMailer.notify_new_task(task_owner, @task).deliver
+        #TaskMailer.notify_new_task(task_owner, @task).deliver
       end
 
     end

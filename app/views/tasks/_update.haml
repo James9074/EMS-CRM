@@ -52,7 +52,7 @@
 
       .clearfix
       .buttons
-        = f.submit class: 'btn btn-primary'
+        = f.submit class: 'btn btn-primary', :data => { :disable_with => "Processing" }
         = link_to 'Cancel', tasks_path, class: "btn btn-danger"
 
 :javascript

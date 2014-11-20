@@ -27,7 +27,7 @@
         = f.input :collab, label: "Shared?", inline_label: "If checked, each user checked above will share the same task.", as: :boolean, checked: shared
       .clearfix
       .buttons
-        = f.submit class: 'btn btn-primary'
+        = f.submit class: 'btn btn-primary', :data => { :disable_with => "Processing" }
         = link_to 'Cancel', dashboard_path, class: "btn btn-danger"
 
 :javascript
