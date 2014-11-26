@@ -12,5 +12,5 @@
         -#= @template.errors.full_messages
         .clearfix
         .buttons
-          = f.submit class: 'btn btn-primary', :data => { :disable_with => "Processing" }
+          = f.submit "Save Task", class: 'btn btn-primary', :data => { :disable_with => "Processing" }
           = link_to 'Cancel', templates_path, class: "btn btn-danger"

@@ -1,11 +1,11 @@
 .span12.well
   %h2
-    Welcome to your Dashboard, 
+    Dashboard -
     - if current_user.try(:admin)
-      Admin
+      = user
       %div{:style=>"float:right"}
         = form_tag do
-          = collection_select("username", "name", @users, "name", :name, options ={:prompt => "Show All Users", :selected => @filtername.to_s} )
+          = collection_select("username", "name", User.all, "name", :name, options ={:prompt => "Show All Users", :selected => @filtername.to_s} )
           = submit_tag "Apply", style: "font-size:14px;"
 
 
@@ -22,7 +22,6 @@
           = @filtername
         - else
           No Tasks Currently Assigned
-
 
     - @users.each do |user|
       - x = false

@@ -30,6 +30,8 @@ def calendar
           puts task.task_name + "aname"
         end
         @filtername = params[:username][:name]
+        @users = User.all.where(name: @filtername)
+
         Task.all.each do |x|
           puts "------------------"
           if x.assigned_to.is_a?(Array)
