@@ -2,7 +2,7 @@
   .fieldset
     .legend
     = simple_form_for @task, :html => { :class => 'form-horizontal' } do |f|
-      .left-column
+      %div
         .form_user
         -# If admin, display edit options, else display regular info
         %div{:class => "taskprogress"} Completed: #{@task.number_completed} | Target: #{@task.number_to_complete}
@@ -10,16 +10,23 @@
         %br
         - if current_user.is_admin?
           = f.input :task_name, label: "Name"
+          .left-column
+            = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
+            <br/>
+            = f.input :task_type, collection: (@task_types), label: "Type"
+            <br/>
+            = f.input :repeating_type, collection: (@repeating_types), label: "Repeat"
+            <br/>
+            = f.input :number_completed, label: "Number completed"
+            <br/>
+            = f.input :collab, label: "Shared?", as: :boolean, disabled: true
+          .right-column
+            - if @task.collab.to_s == 1.to_s
+              = f.input :assigned_to, collection: (@task_owners), as: :check_boxes
+            - else
+              = f.input :assigned_to, collection: (@task_owners)
+          .clearfix
           = f.input :description, label: "Description of task", as: :text, input_html: {rows: 7}
-          = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
-          - if @task.collab.to_s == 1.to_s
-            = f.input :assigned_to, collection: (@task_owners), as: :check_boxes
-          - else
-            = f.input :assigned_to, collection: (@task_owners)
-          = f.input :collab, label: "Shared?", as: :boolean, disabled: true
-          = f.input :task_type, collection: (@task_types), label: "Type"
-          = f.input :repeating_type, collection: (@repeating_types), label: "Repeat"
-          = f.input :number_completed, label: "Number completed"
           = f.input :task_notes, label: "Task Notes", as: :text, input_html: {rows: 7}
 
         - else
@@ -33,24 +40,28 @@
             = @task.description
             %div{:style => "clear:both"}
             <br/>
-          %div{:class => "text optional control-label"} Due Date
-          %div{:class => "controls", :style=> "margin-top:5px;"}
-            = @task.due_date
-            %div{:style => "clear:both"}
+          .left-column
+            %div{:class => "text optional control-label"} Due Date
+            %div{:class => "controls", :style=> "margin-top:5px;"}
+              = @task.due_date
+              %div{:style => "clear:both"}
+              <br/>
+              <br/>
+            = f.input :task_type, collection: (@task_types), label: "Type", disabled: true
             <br/>
-          = f.input :assigned_to, collection: (@task_owners), disabled: true, as: :check_boxes
-          = f.input :collab, label: "Shared?", as: :boolean, disabled: true
-          = f.input :task_type, collection: (@task_types), label: "Type", disabled: true
-          = f.input :repeating_type, collection: (@repeating_types), label: "Repeat", disabled: true
-          = f.input :number_completed, label: "Number completed"
+            = f.input :repeating_type, collection: (@repeating_types), label: "Repeat", disabled: true
+            <br/>
+            = f.input :collab, label: "Shared?", as: :boolean, disabled: true
+            <br/>
+            = f.input :number_completed, label: "Number completed"
+          .right-column
+            = f.input :assigned_to, collection: (@task_owners), disabled: true, as: :check_boxes
+          .clearfix
+
           = f.input :task_notes, label: "Task Notes", as: :text, input_html: {rows: 5}
 
 
-      .right-column
-        -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
 
-
-      .clearfix
       .buttons
         = f.submit class: 'btn btn-primary', :data => { :disable_with => "Processing" }
         = link_to 'Cancel', tasks_path, class: "btn btn-danger"

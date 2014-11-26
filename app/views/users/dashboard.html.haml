@@ -2,7 +2,7 @@
   %h2
     Dashboard -
     - if current_user.try(:admin)
-      = user
+      = user.split()[0] + " " + user.split()[1][0] + "."
       %div{:style=>"float:right"}
         = form_tag do
           = collection_select("username", "name", User.all, "name", :name, options ={:prompt => "Show All Users", :selected => @filtername.to_s} )

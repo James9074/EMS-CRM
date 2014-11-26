@@ -14,6 +14,7 @@ class Task
   field :task_notes
   field :collab
   
+  
   validates_presence_of :task_type, :task_name, :assigned_to, :due_date, :number_to_complete, :repeating_type
 
   belongs_to :user

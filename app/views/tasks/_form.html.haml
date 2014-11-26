@@ -3,29 +3,29 @@
     .legend
     = simple_form_for @task, :html => { :class => 'form-horizontal' } do |f|
       = f.error_notification
-      .left-column
-        = puts "UHH"
-        = puts params[:task].nil?
+      %div
         = f.input :task_name, label: "Name",input_html: !params[:task].nil? ? {value: params[:task][:task_name]} : {value: params[:task_name]}
+      .left-column
+        = puts params[:task].nil?
         = f.input :task_type, collection: (@task_types), label: "Type",selected: !params[:task].nil? ?  params[:task][:task_type] : params[:task_type]
         = f.input :repeating_type, collection: (@repeating_types), label: "Repeat",selected: !params[:task].nil? ? params[:task][:repeating_type] : params[:repeating_type]
-        = f.input :number_to_complete, label: "Target (a single number above 0)",input_html: !params[:task].nil? ? {value: params[:task][:number_to_complete]} : {value: params[:number_to_complete]}
-        = f.input :description, label: "Description of task", as: :text, input_html: !params[:task].nil? ? {rows: 7,value: params[:task][:description]} : {rows: 7,value: params[:description]}
+        = f.input :number_to_complete, label: "Target Number",input_html: !params[:task].nil? ? {value: params[:task][:number_to_complete]} : {value: params[:number_to_complete]}
         = f.input :due_date, :as => :string, :input_html => { :class => 'jquery-ui-date'}
         = f.hidden_field :number_completed, :value => 0
         = f.hidden_field :task_notes, :value => ""
-      .right-column
-        -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
-        - @task_owners = User.all.order_by(organization_role: :asc)
-        = f.input :assigned_to, collection: (@task_owners), as: :check_boxes, checked: !params[:task].nil? ? params[:task][:assigned_to] : params[:assigned_to]
         - shared = false
         - if !params[:task].nil?
           - if !params[:task][:collab].nil?
             - if params[:task][:collab].to_s == 1.to_s
               - shared = true
-
         = f.input :collab, label: "Shared?", inline_label: "If checked, each user checked above will share the same task.", as: :boolean, checked: shared
+
+      .right-column
+        -#= f.input :lead_for_task, collection: (@leads), label: 'For Lead'
+        - @task_owners = User.all.order_by(organization_role: :asc)
+        = f.input :assigned_to, collection: (@task_owners), as: :check_boxes, checked: !params[:task].nil? ? params[:task][:assigned_to] : params[:assigned_to]
       .clearfix
+      = f.input :description, label: "Description of task", as: :text, input_html: !params[:task].nil? ? {rows: 7,value: params[:task][:description]} : {rows: 7,value: params[:description]}
       .buttons
         = f.submit class: 'btn btn-primary', :data => { :disable_with => "Processing" }
         = link_to 'Cancel', dashboard_path, class: "btn btn-danger"

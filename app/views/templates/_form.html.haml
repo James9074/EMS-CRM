@@ -3,11 +3,11 @@
     .legend
     = simple_form_for(@template) do |f|
       = f.error_notification
-      .left-column
+      %div
         = f.input :task_name
         = f.input :task_type, as: :select, collection: (@task_types), label: "Type",selected: @template.task_type
         = f.input :repeating_type, as: :select, collection: (@repeating_types), label: "Repeat", selected: @template.repeating_type
-        = f.input :number_to_complete,input_html: {:style => "width: 8%"}
+        = f.input :number_to_complete,input_html: {:style => "width: 20%"}
         = f.input :description, label: "Description of task", as: :text, input_html: {rows: 7}
         -#= @template.errors.full_messages
         .clearfix
